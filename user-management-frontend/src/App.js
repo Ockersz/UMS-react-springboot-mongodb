@@ -4,6 +4,7 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import { Login } from "./components/Login";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import EmployeeList from "./components/EmployeeList";
+import Employee from "./components/Employee";
 
 const theme = createTheme({
   palette: {
@@ -29,13 +30,25 @@ function App() {
           />
           <Route
             path="/employee"
-            element={<EmployeeList />}
-            authenticated={authenticated}
+            element={
+              authenticated ? (
+                <EmployeeList />
+              ) : (
+                <Navigate to="/" replace state={{ from: "/employee" }} />
+              )
+            }
           />
           <Route
-            index
-            element={<Login setAuthenticated={setAuthenticated} />}
+            path="/register"
+            element={
+              authenticated ? (
+                <Employee />
+              ) : (
+                <Navigate to="/" replace state={{ from: "/register" }} />
+              )
+            }
           />
+          {/* Add other routes here */}
         </Routes>
       </div>
     </ThemeProvider>

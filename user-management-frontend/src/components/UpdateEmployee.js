@@ -63,7 +63,6 @@ export default function UpdateLaptop(props) {
         console.log("User changed");
         setDialogOpen(true);
         navigate("/employee");
-        window.location.reload();
       })
       .catch((err) => console.log(err));
   };
