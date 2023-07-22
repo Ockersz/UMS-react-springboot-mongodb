@@ -1,4 +1,4 @@
-import { Container, Paper } from "@mui/material";
+import { Button, Container, Paper } from "@mui/material";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import DataTable from "react-data-table-component";
@@ -100,6 +100,13 @@ export default function EmployeeList() {
   return (
     <Container>
       <h1>Registered Employees</h1>
+
+      <span>
+        <Button variant="contained" className="button1" >Add User</Button>
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        <Button variant="outlined">Log out</Button>
+      </span>
+      
 
       <Paper elevation={3} style={paperStyle}>
         <DataTable columns={column} data={records} pagination></DataTable>

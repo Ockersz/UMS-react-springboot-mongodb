@@ -92,12 +92,8 @@ export default function Employee() {
 
   return (
     <Grid container>
-      <Grid item xs={7} className="bg"></Grid>
-
-      <Grid item xs={5}>
-        <h1>Laptop Management System</h1>
         <Paper elevation={3} style={paperStyle}>
-          <h2>Register</h2>
+          <h2>Add New User</h2>
           <Box
             component="form"
             sx={{
@@ -169,15 +165,14 @@ export default function Employee() {
                 handleClick(e);
               }}
             >
-              Register
+              Submit
             </Button>
             <br />
             <Link to={"/"} component={<Login />}>
-              Have an account? <u>Login</u>
+              Back to <u>Login</u>
             </Link>
           </Box>
         </Paper>
-      </Grid>
       <ToastContainer />
     </Grid>
   );
