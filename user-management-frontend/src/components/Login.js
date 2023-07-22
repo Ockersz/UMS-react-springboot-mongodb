@@ -1,5 +1,4 @@
 import React from "react";
-import Employee from "./Employee";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import { Button, Paper } from "@mui/material";
@@ -19,8 +18,9 @@ export const Login = ({ setAuthenticated }) => {
   };
   const [username, setUsername] = React.useState("");
   const [password, setPassword] = React.useState("");
-  const [loginStatus, setLoginStatus] = React.useState("");
-  const navigate = useNavigate("/register");
+
+  // Get the navigate function from useNavigate
+  const navigate = useNavigate();
 
   const login = () => {
     if (validate()) {
@@ -30,22 +30,23 @@ export const Login = ({ setAuthenticated }) => {
             `http://localhost:8080/getUser?username=${username}&password=${password}`
           )
           .then((res) => {
-            setLoginStatus(res.data);
-            if (loginStatus) {
-              setAuthenticated(true);
-              navigate("/employee");
+            if (res.data) {
+              setAuthenticated(true); // Set authentication to true
+              navigate("/employee"); // Redirect to /employee
             } else {
               toast.error("Username or Password Incorrect");
             }
           })
-          .catch((err) => console.log(err));
+          .catch((err) => {
+            console.log(err);
+            toast.error("Error logging in, please try again");
+          });
       } catch (err) {
         console.log(err);
-        toast.error("Error logging in please try again");
+        toast.error("Error logging in, please try again");
       }
     }
   };
-
   const validate = () => {
     let result = true;
     if (!username || !password) {
@@ -54,12 +55,6 @@ export const Login = ({ setAuthenticated }) => {
     }
     return result;
   };
-
-  React.useEffect(() => {
-    if (loginStatus) {
-      navigate("/employee");
-    }
-  }, [loginStatus, navigate]);
 
   return (
     <Grid container>
@@ -98,12 +93,7 @@ export const Login = ({ setAuthenticated }) => {
               type="password"
             />
             <br />
-            <Button
-              variant="contained"
-              onClick={(e) => {
-                login(e);
-              }}
-            >
+            <Button variant="contained" onClick={login}>
               Log In
             </Button>
             <br />

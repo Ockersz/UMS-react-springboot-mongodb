@@ -1,6 +1,6 @@
 import "./App.css";
-import Employee from "./components/Employee";
-import { Routes, Route } from "react-router-dom";
+import React, { useState } from "react";
+import { Routes, Route, Navigate } from "react-router-dom";
 import { Login } from "./components/Login";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import EmployeeList from "./components/EmployeeList";
@@ -17,14 +17,25 @@ const theme = createTheme({
 });
 
 function App() {
+  const [authenticated, setAuthenticated] = useState(false);
+
   return (
     <ThemeProvider theme={theme}>
       <div className="App">
         <Routes>
-          <Route path="/" element={<Login />} />
-          <Route path="register" element={<Employee />} />
-          <Route path="/employee" element={<EmployeeList />} />
-          <Route index element={<Login />} />
+          <Route
+            path="/"
+            element={<Login setAuthenticated={setAuthenticated} />}
+          />
+          <Route
+            path="/employee"
+            element={<EmployeeList />}
+            authenticated={authenticated}
+          />
+          <Route
+            index
+            element={<Login setAuthenticated={setAuthenticated} />}
+          />
         </Routes>
       </div>
     </ThemeProvider>
