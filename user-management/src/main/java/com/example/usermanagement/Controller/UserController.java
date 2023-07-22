@@ -40,4 +40,17 @@ public class UserController {
     public User checkUsernameExist(@RequestParam String username ,@RequestParam String password){
         return userRepo.findEmployeeByUsernameAndPassword(username,password);
     }
+    @CrossOrigin(origins = "http://localhost:3000")
+    @DeleteMapping(path = "/deleteUser/{userId}")
+    public void deleteUserbyId(@PathVariable String userId){
+        userRepo.deleteById(userId);
+    }
+    @CrossOrigin(origins = "http://localhost:3000")
+    @PutMapping(path = "/updateUser")
+    public User updateUser(@RequestBody User user){
+        return userRepo.save(user);
+    }
+
+
+
 }
