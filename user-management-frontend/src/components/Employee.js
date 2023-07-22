@@ -20,6 +20,7 @@ export default function Employee() {
   const [name, setName] = React.useState("");
   const [telephone, setTelephone] = React.useState("");
   const [email, setEmail] = React.useState("");
+  const [address,setAddress]=React.useState("");
   const [username, setUsername] = React.useState("");
   const [password, setPassword] = React.useState("");
   const [confirmPassword, setConfirmPassword] = React.useState("");
@@ -40,7 +41,7 @@ export default function Employee() {
         }
 
         // Register new user
-        const newUser = { name, telephone, email, username, password };
+        const newUser = { name, telephone, email, address, username, password };
         const registerRes = await axios.post(
           "http://localhost:8080/addUser",
           newUser
@@ -66,7 +67,7 @@ export default function Employee() {
     var emailValid =
       /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 
-    if (!name || !telephone || !email || !username || !password) {
+    if (!name || !telephone || !email || !address || !username || !password) {
       result = false;
       toast.warning("All fields are required");
     }
@@ -126,6 +127,15 @@ export default function Employee() {
             fullWidth
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+          />
+          <br />
+          <TextField
+            id="outlined-basic"
+            label="Address"
+            variant="outlined"
+            fullWidth
+            value={address}
+            onChange={(e) => setAddress(e.target.value)}
           />
           <br />
           <TextField

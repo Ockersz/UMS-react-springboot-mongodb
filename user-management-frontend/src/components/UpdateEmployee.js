@@ -18,6 +18,7 @@ export default function UpdateLaptop(props) {
   const [name, setName] = React.useState("");
   const [telephone, setTelephone] = React.useState("");
   const [email, setEmail] = React.useState("");
+  const [address, setAddress] = React.useState("");
   const [username, setUsername] = React.useState("");
   const [password, setPassword] = React.useState("");
   const [dialogOpen, setDialogOpen] = React.useState(false);
@@ -27,6 +28,7 @@ export default function UpdateLaptop(props) {
     setName("");
     setTelephone("");
     setEmail("");
+    setAddress("");
     setUsername("");
     setPassword("");
   };
@@ -40,6 +42,7 @@ export default function UpdateLaptop(props) {
           setName(res.data.name);
           setTelephone(res.data.telephone);
           setEmail(res.data.email);
+          setAddress(res.data.address);
           setUsername(res.data.username);
           setPassword(res.data.password);
         })
@@ -52,7 +55,7 @@ export default function UpdateLaptop(props) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const user = { userId, name, telephone, email, username, password };
+    const user = { userId, name, telephone, email, address, username, password };
     console.log(user);
     fetch("http://localhost:8080/updateUser", {
       method: "PUT",
@@ -115,6 +118,16 @@ export default function UpdateLaptop(props) {
             fullWidth
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+          <br />
+          <TextField
+            id="outlined-basic"
+            label="Address"
+            variant="outlined"
+            fullWidth
+            value={address}
+            onChange={(e) => setAddress(e.target.value)}
             required
           />
           <br />
