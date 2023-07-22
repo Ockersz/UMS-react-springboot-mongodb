@@ -67,7 +67,7 @@ export const Login = ({ setAuthenticated }) => {
 
       <Grid item xs={5}>
         <h1>User Management System</h1>
-        <Paper elevation={3} style={paperStyle}>
+        <Paper elevation={3} style={paperStyle} className="paper">
           <h2>Log In</h2>
           <Box
             component="form"
@@ -107,9 +107,6 @@ export const Login = ({ setAuthenticated }) => {
               Log In
             </Button>
             <br />
-            <Link to={"/register"} component={<Employee />}>
-              New User? <u>Register</u>
-            </Link>
           </Box>
         </Paper>
       </Grid>

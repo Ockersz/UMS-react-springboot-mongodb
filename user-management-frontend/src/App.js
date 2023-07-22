@@ -9,7 +9,7 @@ import EmployeeList from "./components/EmployeeList";
 const theme = createTheme({
   palette: {
     primary: {
-      main: "#006064",
+      main: "#3D5EDF",
     },
     secondary: {
       main: "#4ac2d7",
