@@ -6,6 +6,7 @@ import IconButton from "@mui/material/IconButton";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 import UpdateEpmloyee from "./UpdateEmployee";
+import { useNavigate } from "react-router-dom";
 // import FormControl from "@mui/material/FormControl";
 // import MenuItem from "@mui/material/MenuItem";
 // import Select from "@mui/material/Select";
@@ -53,7 +54,7 @@ export default function EmployeeList() {
             <DeleteIcon color="error" />
           </IconButton>
 
-          <IconButton onClick={() => updateUser(row.user, row.username)}>
+          <IconButton onClick={() => updateUser(row.userId)}>
             <EditIcon color="primary" />
           </IconButton>
         </>
@@ -91,10 +92,17 @@ export default function EmployeeList() {
     }
   };
 
-  const updateUser = (userId, username) => {
+  const updateUser = (userId) => {
     setUserId(userId);
-    setUsername(username);
     setShowUpdateComponent((prevState) => !prevState);
+  };
+  const navigate = useNavigate();
+  const addUser = () => {
+    navigate("/register");
+  };
+
+  const logout = () => {
+    navigate("/");
   };
 
   return (
@@ -102,18 +110,31 @@ export default function EmployeeList() {
       <h1>Registered Employees</h1>
 
       <span>
-        <Button variant="contained" className="button1" >Add User</Button>
+        <Button
+          variant="contained"
+          className="button1"
+          onClick={(e) => {
+            addUser();
+          }}
+        >
+          Add User
+        </Button>
         &nbsp;&nbsp;&nbsp;&nbsp;
-        <Button variant="outlined">Log out</Button>
+        <Button
+          variant="outlined"
+          className="button1"
+          onClick={(e) => {
+            logout();
+          }}
+        >
+          Log out
+        </Button>
       </span>
-      
 
       <Paper elevation={3} style={paperStyle}>
         <DataTable columns={column} data={records} pagination></DataTable>
       </Paper>
-      {showUpdateComponent && (
-        <UpdateEpmloyee userId={userId} username={username} />
-      )}
+      {showUpdateComponent && <UpdateEpmloyee userId={userId} />}
     </Container>
   );
 }

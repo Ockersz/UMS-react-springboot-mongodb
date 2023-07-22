@@ -92,87 +92,87 @@ export default function Employee() {
 
   return (
     <Grid container>
-        <Paper elevation={3} style={paperStyle}>
-          <h2>Add New User</h2>
-          <Box
-            component="form"
-            sx={{
-              "& > :not(style)": { m: 1 },
-            }}
-            noValidate
-            autoComplete="off"
-          >
-            <TextField
-              id="outlined-basic"
-              label="Name"
-              variant="outlined"
-              fullWidth
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-            />
-            <br />
-            <TextField
-              id="outlined-basic"
-              label="Telephone"
-              variant="outlined"
-              fullWidth
-              value={telephone}
-              onChange={(e) => setTelephone(e.target.value)}
-            />
-            <br />
-            <TextField
-              id="outlined-basic"
-              label="Email"
-              variant="outlined"
-              fullWidth
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-            <br />
-            <TextField
-              id="outlined-basic"
-              label="Username"
-              variant="outlined"
-              fullWidth
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-            />
-            <br />
-            <TextField
-              id="outlined-basic"
-              label="Password"
-              variant="outlined"
-              fullWidth
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              type="password"
-            />
-            <br />
-            <TextField
-              id="outlined-basic"
-              label="Confirm Password"
-              variant="outlined"
-              fullWidth
-              value={confirmPassword}
-              onChange={(e) => setConfirmPassword(e.target.value)}
-              type="password"
-            />
-            <br />
+      <Paper elevation={3} style={paperStyle}>
+        <h2>Add New User</h2>
+        <Box
+          component="form"
+          sx={{
+            "& > :not(style)": { m: 1 },
+          }}
+          noValidate
+          autoComplete="off"
+        >
+          <TextField
+            id="outlined-basic"
+            label="Name"
+            variant="outlined"
+            fullWidth
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          />
+          <br />
+          <TextField
+            id="outlined-basic"
+            label="Telephone"
+            variant="outlined"
+            fullWidth
+            value={telephone}
+            onChange={(e) => setTelephone(e.target.value)}
+          />
+          <br />
+          <TextField
+            id="outlined-basic"
+            label="Email"
+            variant="outlined"
+            fullWidth
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <br />
+          <TextField
+            id="outlined-basic"
+            label="Username"
+            variant="outlined"
+            fullWidth
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+          />
+          <br />
+          <TextField
+            id="outlined-basic"
+            label="Password"
+            variant="outlined"
+            fullWidth
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            type="password"
+          />
+          <br />
+          <TextField
+            id="outlined-basic"
+            label="Confirm Password"
+            variant="outlined"
+            fullWidth
+            value={confirmPassword}
+            onChange={(e) => setConfirmPassword(e.target.value)}
+            type="password"
+          />
+          <br />
 
-            <Button
-              variant="contained"
-              onClick={(e) => {
-                handleClick(e);
-              }}
-            >
-              Submit
-            </Button>
-            <br />
-            <Link to={"/"} component={<Login />}>
-              Back to <u>Login</u>
-            </Link>
-          </Box>
-        </Paper>
+          <Button
+            variant="contained"
+            onClick={(e) => {
+              handleClick(e);
+            }}
+          >
+            Submit
+          </Button>
+          <br />
+          <Link to={"/employee"} component={<Employee />}>
+            Back to <u>List</u>
+          </Link>
+        </Box>
+      </Paper>
       <ToastContainer />
     </Grid>
   );

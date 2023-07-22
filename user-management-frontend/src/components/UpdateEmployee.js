@@ -14,7 +14,7 @@ export default function UpdateLaptop(props) {
     borderRadius: "10px",
   };
 
-  const [userId, setUserId] = React.useState(""); // props.location.state.userId
+  const { userId } = props;
   const [name, setName] = React.useState("");
   const [telephone, setTelephone] = React.useState("");
   const [email, setEmail] = React.useState("");
@@ -34,10 +34,9 @@ export default function UpdateLaptop(props) {
   React.useEffect(() => {
     const fetData = async () => {
       axios
-        .get(`http://localhost:8080/getUser?username=${username}`)
+        .get(`http://localhost:8080/getUser?userId=${userId}`)
         .then((res) => {
           console.log(res);
-          setUserId(res.data.userId);
           setName(res.data.name);
           setTelephone(res.data.telephone);
           setEmail(res.data.email);
@@ -47,7 +46,7 @@ export default function UpdateLaptop(props) {
         .catch((err) => console.log(err));
     };
     fetData();
-  }, [username]);
+  }, [userId]);
 
   const navigate = useNavigate();
 

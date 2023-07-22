@@ -1,6 +1,7 @@
 package com.example.usermanagement.Controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import com.example.usermanagement.Data.User;
 import com.example.usermanagement.Data.UserRepository;
@@ -31,10 +32,15 @@ public class UserController {
 
     @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping(path = "/getUser", params = "username")
-    public User checkUsernameExist(@RequestParam (defaultValue = "shahein") String username){
+    public User checkUsernameExist(@RequestParam String username){
         return userRepo.checkUsernameExist(username);
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
+    @GetMapping(path = "/getUser", params = "userId")
+    public Optional<User> getUserByUserId(@RequestParam String userId){
+        return userRepo.findById(userId);
+    }
     @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping(path = "/getUser", params = {"username", "password"})
     public User checkUsernameExist(@RequestParam String username ,@RequestParam String password){
