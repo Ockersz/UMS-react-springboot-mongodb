@@ -26,16 +26,16 @@ export default function EmployeeList() {
 
   const column = [
     {
-      name: "Employee Id",
-      selector: (row) => row.userId,
-    },
-    {
       name: "Employee Name",
       selector: (row) => row.name,
     },
     {
       name: "Employee Email",
       selector: (row) => row.email,
+    },
+    {
+      name: "Employee Address",
+      selector: (row) => row.address,
     },
     {
       name: "Employee Telephone",
