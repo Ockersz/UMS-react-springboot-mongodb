@@ -5,6 +5,7 @@ import DataTable from "react-data-table-component";
 import IconButton from "@mui/material/IconButton";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
+import UpdateEpmloyee from "./UpdateEmployee";
 // import FormControl from "@mui/material/FormControl";
 // import MenuItem from "@mui/material/MenuItem";
 // import Select from "@mui/material/Select";
@@ -19,6 +20,7 @@ export default function EmployeeList() {
     borderRadius: "10px",
   };
   const [userId, setUserId] = React.useState("");
+  const [username, setUsername] = React.useState("");
   const [showUpdateComponent, setShowUpdateComponent] = useState(false);
   const [records, setRecords] = useState([]);
 
@@ -44,10 +46,6 @@ export default function EmployeeList() {
       selector: (row) => row.username,
     },
     {
-      name: "Employee Password",
-      selector: (row) => row.password,
-    },
-    {
       name: "Action",
       cell: (row) => (
         <>
@@ -55,7 +53,7 @@ export default function EmployeeList() {
             <DeleteIcon color="error" />
           </IconButton>
 
-          <IconButton onClick={() => updateUser(row.userId)}>
+          <IconButton onClick={() => updateUser(row.user, row.username)}>
             <EditIcon color="primary" />
           </IconButton>
         </>
@@ -85,7 +83,7 @@ export default function EmployeeList() {
         headers: { "Content-Type": "application/json" },
       })
         .then(() => {
-          console.log("Laptop Deleted");
+          console.log("User Deleted");
           alert("User Deleted Successfully");
           setRecords(records.filter((record) => record.userId !== userId));
         })
@@ -93,8 +91,9 @@ export default function EmployeeList() {
     }
   };
 
-  const updateUser = (userId) => {
+  const updateUser = (userId, username) => {
     setUserId(userId);
+    setUsername(username);
     setShowUpdateComponent((prevState) => !prevState);
   };
 
@@ -105,6 +104,9 @@ export default function EmployeeList() {
       <Paper elevation={3} style={paperStyle}>
         <DataTable columns={column} data={records} pagination></DataTable>
       </Paper>
+      {showUpdateComponent && (
+        <UpdateEpmloyee userId={userId} username={username} />
+      )}
     </Container>
   );
 }
