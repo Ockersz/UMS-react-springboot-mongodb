@@ -21,7 +21,6 @@ export default function EmployeeList() {
     borderRadius: "10px",
   };
   const [userId, setUserId] = React.useState("");
-  const [username, setUsername] = React.useState("");
   const [showUpdateComponent, setShowUpdateComponent] = useState(false);
   const [records, setRecords] = useState([]);
 
