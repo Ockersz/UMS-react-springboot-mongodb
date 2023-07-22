@@ -1,10 +1,9 @@
 import "./App.css";
 import Employee from "./components/Employee";
-import { Routes, Route /*Outlet*/ } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import { Login } from "./components/Login";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import EmployeeList from "./components/EmployeeList";
-// import Menu from "./components/Menu";
 
 const theme = createTheme({
   palette: {
